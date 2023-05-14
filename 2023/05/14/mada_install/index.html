@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Jiawei Chen">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://cplusv2023.github.io/cplusv/2023/05/14/mada_install/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="前言的前言这篇博客早些时间以及发布在CSND:Ubuntu22.04地震数据处理软件Madagascar安装 上了，所以目前你可以看到博客内部的图片引用都是带水印的。考虑到CSDN整体环境的问题，我打算把我的内容发布在个人博客上，也就是这里。因为刚刚起步，很多工作需要做，所以内容质量可能稍微差一些。 前言Madagascar 是一款开源的地震数据处理软件，其不仅提供了地震数据处理所需要的各类软件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu22.04地震数据处理软件Madagascar安装">
+<meta property="og:url" content="http://cplusv2023.github.io/cplusv/2023/05/14/mada_install/index.html">
+<meta property="og:site_name" content="CplusV&#39;s Space">
+<meta property="og:description" content="前言的前言这篇博客早些时间以及发布在CSND:Ubuntu22.04地震数据处理软件Madagascar安装 上了，所以目前你可以看到博客内部的图片引用都是带水印的。考虑到CSDN整体环境的问题，我打算把我的内容发布在个人博客上，也就是这里。因为刚刚起步，很多工作需要做，所以内容质量可能稍微差一些。 前言Madagascar 是一款开源的地震数据处理软件，其不仅提供了地震数据处理所需要的各类软件">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://cplusv2023.github.io/cplusv/cplusv/mada_install/cover.png#pic_center">
+<meta property="og:image" content="http://cplusv2023.github.io/cplusv/cplusv/mada_install/ppt1.png">
+<meta property="og:image" content="http://cplusv2023.github.io/cplusv/cplusv/mada_install/directory.png">
+<meta property="og:image" content="http://cplusv2023.github.io/cplusv/cplusv/mada_install/github.png">
+<meta property="og:image" content="http://cplusv2023.github.io/cplusv/cplusv/mada_install/noscons.png">
+<meta property="og:image" content="http://cplusv2023.github.io/cplusv/cplusv/mada_install/pythonlnk.png">
+<meta property="og:image" content="http://cplusv2023.github.io/cplusv/cplusv/mada_install/config.png">
+<meta property="og:image" content="http://cplusv2023.github.io/cplusv/cplusv/mada_install/make.png">
+<meta property="og:image" content="http://cplusv2023.github.io/cplusv/cplusv/mada_install/env.png">
+<meta property="og:image" content="http://cplusv2023.github.io/cplusv/cplusv/mada_install/sfin.png">
+<meta property="og:image" content="http://cplusv2023.github.io/cplusv/cplusv/mada_install/welcome.png">
+<meta property="og:image" content="http://cplusv2023.github.io/cplusv/cplusv/mada_install/issue1.jpeg">
+<meta property="article:published_time" content="2023-05-14T04:14:25.870Z">
+<meta property="article:modified_time" content="2023-05-14T16:50:26.180Z">
+<meta property="article:author" content="Jiawei Chen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://cplusv2023.github.io/cplusv/cplusv/mada_install/cover.png#pic_center">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/cplusv/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/cplusv/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/cplusv/cplusv/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Ubuntu22.04地震数据处理软件Madagascar安装 -
+        
+        Cplusv&#39;s Space
+    </title>
+    
+<link rel="stylesheet" href="/cplusv/css/style.css">
+
+    
+<link rel="stylesheet" href="/cplusv/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"cplusv2023.github.io","root":"/cplusv/","language":"en"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/cplusv/images/lightbg.jpg","dark":"/cplusv/images/darkbg.jpg"},"title":"Cplusv's Space","subtitle":{"text":["Nothing matters but enriching yourself."],"hitokoto":{"enable":true,"api":"https://v1.hitokoto.cn","types":"c&i&k"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":false,"smart_backspace":false},"text_color":{"light":"#496969","dark":"#92c3f6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":"enable","links":{"github":"https://github.com/cplusv2023","instagram":null,"zhihu":null,"twitter":null,"email":"cplusv_official@qq.com"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.3","navbar":{"auto_hide":false,"color":{"left":"#d0fbed","right":"#f9d5b4","transparency":30},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/cplusv/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/cplusv/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/cplusv/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/cplusv/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Cplusv&#39;s Space
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/cplusv/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/cplusv/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">Ubuntu22.04地震数据处理软件Madagascar安装</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/cplusv/cplusv/images/redefine-avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Jiawei Chen</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-05-14 12:14:25</span>
+        <span class="mobile">2023-05-14 12:14</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-05-15 00:50:26</span>
+            <span class="mobile">2023-05-15 00:50</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/cplusv/cplusv/mada_install/cover.png#pic_center"
+                      alt="封面"
+                ></p>
+<h1 id="前言的前言"><a href="#前言的前言" class="headerlink" title="前言的前言"></a>前言的前言</h1><p>这篇博客早些时间以及发布在CSND:<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45317164/article/details/128490125" >Ubuntu22.04地震数据处理软件Madagascar安装 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>上了，所以目前你可以看到博客内部的图片引用都是带水印的。考虑到CSDN整体环境的问题，我打算把我的内容发布在个人博客上，也就是这里。因为刚刚起步，很多工作需要做，所以内容质量可能稍微差一些。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>Madagascar</strong> 是一款开源的地震数据处理软件，其不仅提供了地震数据处理所需要的各类软件包，还为数据处理提供了有力的编程环境。更多关于<strong>Madagascar</strong> 的介绍和使用方法，可以参考官方wiki页面：<br><a target="_blank" rel="noopener" href="https://www.reproducibility.org/wiki/Main_Page"><strong>Madagascar</strong> Main Page(ahay.org)</a><br>下面是摘自官方wiki介绍：</p>
+<blockquote>
+<p><strong>Madagascar</strong>  is an open-source software package for multidimensional data analysis and reproducible computational experiments. Its mission is to provide:</p>
+<ol>
+<li>a convenient and powerful environment</li>
+<li>a convenient technology transfer tool</li>
+</ol>
+<p>for researchers working with digital image and data processing in geophysics and related fields. Technology developed using the Madagascar project management system is transferred in the form of recorded processing histories, which become “computational recipes” to be verified, exchanged, and modified by users of the system.</p>
+</blockquote>
+<p>下面是Prof. Yang Liu 在<a class="link"   target="_blank" rel="noopener" href="https://www.reproducibility.org/wiki/Hefei_2020" >Madagascar School on Open-Source Geophysics in Hefei 2020 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>*为<strong>Madagascar</strong>做的介绍PPT：<br><a class="link"   target="_blank" rel="noopener" href="https://reproducibility.org/wikilocal/docs/school2020-introduction.pdf" >Introduction to Madagascar Software Project - Yang Liu <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/cplusv/cplusv/mada_install/ppt1.png"
+                      alt="ppt"
+                ></p>
+<p><strong>Madagascar</strong>软件github页面：<a class="link"   target="_blank" rel="noopener" href="https://github.com/ahay/src" >https://github.com/ahay/src <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，你可以在这里找到软件的最新release。如果你的网络访问github存在问题，可以考虑使用gitee，具体使用方法此处不展开，放上一个gitee搜索页面：<a class="link"   target="_blank" rel="noopener" href="https://search.gitee.com/?skin=rec&type=repository&q=Madagascar" >Gitee搜索:Madagascar <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</p>
+<p><em>*注：不定期会有<strong>Madagascar</strong>相关的活动在高校之间举办，可以参考<a class="link"   target="_blank" rel="noopener" href="https://www.reproducibility.org/wiki/Conferences" >Madagascar Conferences <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>页面寻找更多信息。</em></p>
+<h1 id="安装之前的准备"><a href="#安装之前的准备" class="headerlink" title="安装之前的准备"></a>安装之前的准备</h1><h2 id="系统版本：Ubuntu22-04"><a href="#系统版本：Ubuntu22-04" class="headerlink" title="系统版本：Ubuntu22.04"></a>系统版本：Ubuntu22.04</h2><p>这里使用Ubuntu版本为<strong>22.04</strong>，不同的操作系统版本可能存在细微的差别，下面的教程可以提供一个参考，同时，不同Linux发行版本的安装教程可以参考官方提供的安装教程<a target="_blank" rel="noopener" href="https://www.reproducibility.org/wiki/Installation"><strong>Madagascar</strong> Installation</a>和<a target="_blank" rel="noopener" href="https://www.reproducibility.org/wiki/Advanced_Installation#Platform-specific_installation_advice"><strong>Madagascar</strong> Advanced Installation(针对不同Linux发行版本)</a>，我在去年写过一篇Windows下Ubuntu WSL环境的Madagascar安装教程，有需求也可以参考<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45317164/article/details/121972078" >Windows11&#x2F;10 环境下安装Madagascar (WSL Ubuntu) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</p>
+<p>如果你使用的是Vmware虚拟机，你需要提前安装好操作系统。关于Ubuntu-22.04操作系统的安装（包括虚拟机安装）网上有许多详尽的教程，此处不做赘述。</p>
+<h2 id="建议的软件目录"><a href="#建议的软件目录" class="headerlink" title="建议的软件目录"></a>建议的软件目录</h2><p><strong>如果你精通linux或者对其有一定的了解，这一步可以略过。</strong><br>在下载软件源文件之前，建议提前规划好软件的源文件存放目录和软件安装目录，由于Linux存在用户权限的问题，建议将软件所有文件放在用户目录下，以免产生不必要的麻烦。如果你对linux的使用并不熟悉，请使用下面给出的推荐的软件源文件和软件安装目录：&#x2F;home&#x2F;用户名&#x2F;Madagascar&#x2F;，或者相对目录~&#x2F;Madagascar&#x2F;：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/home/用户名/Madagascar/</span><br><span class="line">├── RSFSRC</span><br><span class="line">│   ├── 这里存放Madagascar软件的源文件</span><br><span class="line">├── RSFROOT</span><br><span class="line">│   ├── 这里为Madagascar软件（使用configure prefix参数设置，下文会讲到）</span><br></pre></td></tr></table></figure></div>
+<p>如下图所示，源文件RSFSRC和软件目录RSFROOT均存放在用户文件夹的Madagascar目录下：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/cplusv/cplusv/mada_install/directory.png"
+                      alt="Madagascar目录位置"
+                ></p>
+<h2 id="软件下载"><a href="#软件下载" class="headerlink" title="软件下载"></a>软件下载</h2><p>你需要提前准备好<strong>Madagascar</strong>源文件，推荐使用如下命令(包含了构建和进入推荐的目录文件夹)：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#构建和进入目录</span></span><br><span class="line"><span class="built_in">cd</span> ~ &amp; <span class="built_in">mkdir</span> madagascar </span><br><span class="line"><span class="built_in">cd</span> madagascar</span><br><span class="line"><span class="comment">#使用git命令clone源文件</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/ahay/src RSFSRC</span><br></pre></td></tr></table></figure></div>
+<p>等待git命令clone结束即可进入下一步。如果git命令提示无法访问（经常会出现的问题）可以多尝试几次，也可以考虑使用gitee，相关的教程网上有很多也很详细，此处不再赘述。<br>还可以通过github下载压缩包，解压到对应的RSFSRC目录下(&#x2F;home&#x2F;用户名&#x2F;madagascar&#x2F;RSFSRC&#x2F;)：<a class="link"   target="_blank" rel="noopener" href="https://github.com/ahay/src" >https://github.com/ahay/src <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/cplusv/cplusv/mada_install/github.png"
+                      alt="Madagascar github页面"
+                ></p>
+<h2 id="环境（依赖库）安装（重要）"><a href="#环境（依赖库）安装（重要）" class="headerlink" title="环境（依赖库）安装（重要）"></a>环境（依赖库）安装（重要）</h2><p>环境安装是<strong>Madagascar</strong>安装中最重要也是最容易忽略的一环，这一步关乎<strong>Madagascar</strong>中许多模块是否能够正确安装启用。<strong>注意：除了安装依赖库以外（该用sudo的时候会提到），请不要使用root用户或者管理员权限(sudo)。</strong><br>首先进入克隆或者下载好的源文件目录（如果在上一步的软件下载中你没有按照推荐的目录下载或克隆，请使用你自己下载的目录而并非下面给出的目录，后面许多步骤也一样，读者请自行进行替换）。使用configure进行配置，prefix参数指定安装文件夹，如果你对linux使用不是很熟悉，建议使用下面的目录。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#进入目录</span></span><br><span class="line"><span class="built_in">cd</span> ~/madagascar/RSFSRC</span><br><span class="line"><span class="comment">#使用configure查看环境(prefix=后面是你想安装Madagascar的位置，建议使用下面的目录)</span></span><br><span class="line">./configure --prefix=~/madagascar/RSFROOT</span><br></pre></td></tr></table></figure></div>
+<p>一般来说，直接使用configure会出现错误，而且这个报错信息会比较迷惑，如下图所示。参考下面的步骤可以解决这个问题。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/cplusv/cplusv/mada_install/noscons.png"
+                      alt="第一次configure报错"
+                ></p>
+<p>首先，Ubuntu22.04虽然自带Python3.10，但是无法直接使用python命令，而只能使用python3命令。所以我们首先给python创建一个软链接（其实是复制）：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看python命令是否合法</span></span><br><span class="line"><span class="built_in">which</span> python</span><br><span class="line"><span class="comment">#一般来说（如果是刚刚安装好的ubuntu22.04系统），这个命令没有输出</span></span><br><span class="line"><span class="comment">#或者使用下面的命令，一般来说会提示找不到命令“python”:</span></span><br><span class="line">python --version</span><br><span class="line"><span class="comment">#如果没有出现“找不到命令&#x27;python&#x27;”，而是输出了对应的3.10版本号的话，下面这一步可以跳过</span></span><br><span class="line"><span class="comment">#需要管理员权限(sudo)</span></span><br><span class="line">sudo <span class="built_in">cp</span> /usr/bin/python3 /usr/bin/python</span><br></pre></td></tr></table></figure></div>
+<p><strong>注：如果你有更完善的python环境配置（例如anaconda），这一步请注意自行调整。</strong><br>创建完python3到python的软连接之后，再使用which python或者python –version命令的话应该是有输出的，如下图所示：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/cplusv/cplusv/mada_install/pythonlnk.png"
+                      alt="python软连接"
+                ><br>建立完软连接之后，再使用configure依旧会报错，如下图所示，不过这个报错提示比较有针对性：没有安装pip。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#第二次configure</span></span><br><span class="line">./configure --prefix=~/madagascar/RSFROOT</span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/cplusv/cplusv/mada_install/config.png"
+                      alt="第二次configure报错"
+                ><br>包括pip在内的其他依赖库可以参考官方页面的依赖库安装教程<a target="_blank" rel="noopener" href="https://www.reproducibility.org/wiki/Advanced_Installation#Platform-specific_installation_advice"><strong>Madagascar</strong> Advanced Installation</a>解决，下面给出Ubuntu22.04版本的解决方案（依然是参考官方的教程）。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装python pip 和必要的numpy包</span></span><br><span class="line">sudo apt-get install pip</span><br><span class="line"><span class="comment">#虽然不推荐使用sudo安装numpy，但是只有这样才能在软件configure的时候识别到。</span></span><br><span class="line"><span class="comment">#使用sudo安装一般会有如下WARNING：</span></span><br><span class="line"><span class="comment">#WARNING: Running pip as the &#x27;root&#x27; user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv</span></span><br><span class="line">sudo python -m pip install numpy</span><br><span class="line"><span class="comment">#安装有关依赖</span></span><br><span class="line">sudo apt-get install libxaw7-dev freeglut3-dev libnetpbm10-dev \</span><br><span class="line">libgd-dev libplplot-dev libavcodec-dev libcairo2-dev \</span><br><span class="line">libjpeg-dev swig  g++ gfortran libopenmpi-dev libfftw3-dev \</span><br><span class="line">libsuitesparse-dev scons</span><br></pre></td></tr></table></figure></div>
+<p>上面的安装结束之后，再使用configure便可以合理的输出了。当然，可以再对各项输出进行检验。例如，如果你的电脑有支持cuda的显卡并且有意使用的话，可以在进行下一步的安装之前将cuda环境配置好，由于这一部分并不通用且网上相应的教程也很多也比较详细，此处不多赘述。</p>
+<p><strong>注意：如果你的系统下安装了cuda(nvcc –version可查看cuda版本)，最好确认其版本不过高，目前已知cuda-12.0在下面的make过程会报错而cuda-11.0不会，如果你在make过程中遇到了与cuda相关的(编译器为nvcc而不是gcc)问题，可以考虑降低系统的cuda版本。</strong></p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#第三次configure</span></span><br><span class="line">./configure --prefix=~/madagascar/RSFROOT</span><br></pre></td></tr></table></figure></div>
+<p>按理来说，输出应该是下面这样：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">checking <span class="keyword">for</span> Python ... /usr/bin/python</span><br><span class="line">checking Python version ... 3.10.4</span><br><span class="line">checking <span class="keyword">for</span> RSFROOT ... ~/madagascar/RSFROOT</span><br><span class="line">checking <span class="keyword">for</span> SCons ... /usr/bin/scons</span><br><span class="line">checking SCons version ... v4.0.1.c289977f8b34786ab6c334311e232886da7e8df1</span><br><span class="line">Running RSFROOT=~/madagascar/RSFROOT /usr/bin/scons  config ...</span><br><span class="line">------------------------</span><br><span class="line">scons: Reading SConscript files ...</span><br><span class="line">checking platform ... (cached) linux [ubuntu]</span><br><span class="line">checking <span class="keyword">for</span> C compiler ... (cached) gcc</span><br><span class="line">checking <span class="keyword">if</span> gcc works ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">if</span> gcc accepts <span class="string">&#x27;-x c -std=gnu17 -Wall -pedantic&#x27;</span> ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> ar ... (cached) ar</span><br><span class="line">checking <span class="keyword">for</span> rpc ... no</span><br><span class="line">checking complex support ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> X11 headers ... /usr/include</span><br><span class="line">checking <span class="keyword">for</span> X11 libraries ... /usr/lib/X11</span><br><span class="line">checking <span class="keyword">for</span> OpenGL ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> sfpen ... (cached) xtpen</span><br><span class="line">checking <span class="keyword">for</span> ppm ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> tiff ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> GD (PNG) ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> GD (GIF) ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> plplot ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> ffmpeg ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> cairo (PNG) ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> cairo (SVG) ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> cairo (PDF) ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> jpeg ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> BLAS ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> LAPACK ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> SWIG ... (cached) /usr/bin/swig</span><br><span class="line">checking <span class="keyword">for</span> numpy ... (cached) <span class="built_in">yes</span></span><br><span class="line">checking API options ... (cached) []</span><br><span class="line">checking <span class="keyword">for</span> C++ compiler ... (cached) g++</span><br><span class="line">checking <span class="keyword">if</span> g++ works ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">if</span> g++ accepts <span class="string">&#x27;-std=gnu++17 -U__STRICT_ANSI__ -Wall -pedantic&#x27;</span> ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> MPICC ... (cached) /usr/bin/mpicc</span><br><span class="line">checking <span class="keyword">if</span> /usr/bin/mpicc works ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> MPICXX ... (cached) /usr/bin/mpicxx</span><br><span class="line">checking <span class="keyword">if</span> /usr/bin/mpicxx works ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> MPIRUN ... (cached) /usr/bin/mpirun</span><br><span class="line">checking <span class="keyword">for</span> Posix threads ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> OpenMP ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> CUDA ... (cached) no</span><br><span class="line">checking <span class="keyword">for</span> FFTW ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">if</span> FFTW supports threads ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> SuiteSparse ... <span class="built_in">yes</span></span><br><span class="line">checking <span class="keyword">for</span> pfft ... no</span><br><span class="line">scons: <span class="keyword">done</span> reading SConscript files.</span><br><span class="line">scons: Building targets ...</span><br><span class="line">shell_script([<span class="string">&quot;env.sh&quot;</span>], [])</span><br><span class="line">shell_script([<span class="string">&quot;env.csh&quot;</span>], [])</span><br><span class="line">scons: <span class="keyword">done</span> building targets.</span><br><span class="line">------------------------</span><br><span class="line">Done with configuration.</span><br></pre></td></tr></table></figure></div>
+<p>参考上面的输出，如果你和上面所展示的一样，大部分需要的条目都是’yes’，便可以继续下一步的安装。</p>
+<h1 id="编译和安装"><a href="#编译和安装" class="headerlink" title="编译和安装"></a>编译和安装</h1><p>在configure没有问题之后，便可以开始编译和安装。只需要一个简单的命令：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#以防万一（如果你在这个目录下，可以忽略这个cd命令）。</span></span><br><span class="line"><span class="comment">#当然，如果你自定了源文件目录，请使用你的自定目录。</span></span><br><span class="line"><span class="built_in">cd</span> ~/madagascar/RSFSRC</span><br><span class="line"><span class="comment">#编译和安装</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure></div>
+<p>由于相关的源文件比较多，编译时间通常会比较长。编译结束之后，你会看到如下图所示的输出（就是在提示你已经编译安装完成要配置环境变量）。接下来便可以进行环境变量的配置。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/cplusv/cplusv/mada_install/make.png"
+                      alt="编译安装完成"
+                ></p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">---------------------------------------------------------</span><br><span class="line">To start using madagascar, <span class="built_in">source</span> env.sh or env.csh from:</span><br><span class="line">    /home/用户名/madagascar/RSFROOT/share/madagascar/etc/</span><br><span class="line">Local documentation center at:</span><br><span class="line">    /home/用户名/madagascar/RSFROOT/share/doc/madagascar/</span><br><span class="line">Documentation wiki at http://www.ahay.org</span><br><span class="line">---------------------------------------------------------</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h1 id="环境变量配置"><a href="#环境变量配置" class="headerlink" title="环境变量配置"></a>环境变量配置</h1><p>最后一步，配置环境变量。参考上面的提示，打开你的终端配置文件 ~&#x2F;.bashrc。Ubuntu22.04默认的终端是bash，所以这里用 ~&#x2F;.bashrc做参考。当然，如果你在使用其他的shell如zsh等，打开相应的配置文件即可。<br>如果你使用的带有图形界面的Ubuntu，你可以使用Ubuntu自带的gedit打开：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gedit ~/.bashrc</span><br></pre></td></tr></table></figure></div>
+<p>当然，你也可以使用vim（Ubuntu22.04应该是不自带vim的）或者其他文本编辑软件。<br>然后使用图形界面进行文本编辑。在文件的最后追加一行：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#下面使用的是上面推荐的RSFROOT的目录地址，如果你在安装时自定了安装目录，请使用你的自定安装目录</span></span><br><span class="line"><span class="built_in">source</span> ~/madagascar/RSFROOT/share/madagascar/etc/env.sh</span><br></pre></td></tr></table></figure></div>
+<p>你甚至可以用echo命令完成上面的步骤：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#下面使用的是上面推荐的RSFROOT的目录地址，如果你在安装时自定了安装目录，请使用你的自定安装目录</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;source ~/madagascar/RSFROOT/share/madagascar/etc/env.sh&#x27;</span> &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/cplusv/cplusv/mada_install/env.png"
+                      alt="使用gedit编辑bashrc"
+                ></p>
+<h1 id="安装结束"><a href="#安装结束" class="headerlink" title="安装结束"></a>安装结束</h1><p>环境配置结束之后，你便完成了<strong>Madagascar</strong>的安装工作。打开一个新的终端，或者在旧的终端使用source ~&#x2F;.bashrc 命令，你便可以调用<strong>Madagascar</strong>相关的软件模块了。以sfin为例：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sfin</span><br></pre></td></tr></table></figure></div>
+<p>会输出对应的模块说明文档(键入q可以退出该页面)：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/cplusv/cplusv/mada_install/sfin.png"
+                      alt="sfin说明文档"
+                ><br>你可以使用下面的命令查看图像输出：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sfspike n1=1000 k1=300 | sfbandpass fhi=2 phase=y | \</span><br><span class="line">sfwiggle clip=0.02 title=<span class="string">&quot;Welcome to Madagascar&quot;</span> | sfpen</span><br></pre></td></tr></table></figure></div>
+<p>其输出应该为：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/cplusv/cplusv/mada_install/welcome.png"
+                      alt="Welcome to Madagascar"
+                ></p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>Madagascar是一款强大的开源数据处理软件，不仅仅限制于地震数据处理，其多样的软件模块为包括地震数据处理和图像处理在内的许多问题的解决提供了很好的软件环境。更多的Madagascar使用方法和教程可以参考官方网站<a target="_blank" rel="noopener" href="https://www.reproducibility.org/wiki/Main_Page"><strong>Madagascar</strong> Main Page(ahay.org)</a>。不定期会有相应的会议或者教学活动举办，可以关注<a class="link"   target="_blank" rel="noopener" href="https://www.reproducibility.org/wiki/Conferences" >Madagascar Conferences <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，还可以关注开发者博客。以上这些内容在Main Page里面都可以找到。后续还会有更多更丰富的内容，尽情期待！</p>
+<h1 id="安装过程可能遇到的问题"><a href="#安装过程可能遇到的问题" class="headerlink" title="安装过程可能遇到的问题"></a>安装过程可能遇到的问题</h1><h2 id="1-epydoc"><a href="#1-epydoc" class="headerlink" title="1.epydoc"></a>1.epydoc</h2><p>2023年1月4日更新：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/cplusv/cplusv/mada_install/issue1.jpeg"
+                      alt="在这里插入图片描述"
+                ><br>由于系统中存在python2.x版本的epydoc，导致在make过程中使用的基于python3的scons和python2的语法不兼容而报错，<br>解决方法：<br>使用sudo pip uninstall epydoc移除epydoc</p>
+<h2 id="2-Make过程中的-byte2tif-c编译错误（2023年4月1日版本）（后续已修复）"><a href="#2-Make过程中的-byte2tif-c编译错误（2023年4月1日版本）（后续已修复）" class="headerlink" title="2.Make过程中的_byte2tif.c编译错误（2023年4月1日版本）（后续已修复）"></a>2.Make过程中的_byte2tif.c编译错误（2023年4月1日版本）（后续已修复）</h2><p><strong>2023年4月8日2e4cf60已修复</strong><br>由于当前版本的Madagascar存在bug，导致在make&amp;make install这一步中会出现如下错误：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -o build/user/fomels/sfbyte2tif -pthread -fopemp build/user/fonels/_byte2tif.o -lbuild/lib -lrsf -<span class="built_in">ln</span> -lblas -llapack -lblas -lgonmp-lfftw3f -lfftw3 -lfftw3f_threads -lfftw3_threads -ltiff </span><br><span class="line">/usr/bin/ld: build/user/fomels/_byte2tif.o: <span class="keyword">in</span> <span class="keyword">function</span> <span class="string">&#x27;main&#x27;</span> :</span><br><span class="line">_byte2tif.c: (.text.startup+0x109): undefined reference to <span class="string">&#x27;write_JPEG_file&#x27;</span></span><br><span class="line">collect2 : error: ld returned 1 <span class="built_in">exit</span> status</span><br></pre></td></tr></table></figure></div>
+<p>可以参考Github这篇issue：<br><a class="link"   target="_blank" rel="noopener" href="https://github.com/ahay/src/issues/287" >[BUG] Fatal error while gcc building src&#x2F;user&#x2F;fomel&#x2F;_byte2tif.c (A immature solution is suggested.) #287 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br><strong>解决方法（2种）：</strong> </p>
+<ol>
+<li>下载前一个稳定版本的Madagascar进行安装。</li>
+<li>如果采用当前版本，进入源文件目录下的user&#x2F;fomel&#x2F;（如果你按照我的推荐方案来的话应该是&#x2F;home&#x2F;你的用户名&#x2F;madagascar&#x2F;RSFSRC&#x2F;user&#x2F;fomel&#x2F;）,打开该目录下的SConstruct文件，将其种的第129行的：<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prog = env.Program(<span class="string">&#x27;sf&#x27;</span>+conv,<span class="string">&#x27;_%s.c&#x27;</span> % conv,LIBS=libs+[tiff])</span><br></pre></td></tr></table></figure></div>
+&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp; &amp;nbsp;改成：<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prog = env.Program(<span class="string">&#x27;sf&#x27;</span>+conv,[<span class="string">&#x27;_%s.c&#x27;</span> % conv,jpeg_o] ,LIBS=libs+[tiff]+[jpeg])</span><br></pre></td></tr></table></figure></div>
+&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp; &amp;nbsp;即可正常make &amp; make install。</li>
+</ol>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Ubuntu22.04地震数据处理软件Madagascar安装</li>
+        <li><strong>Author:</strong> Jiawei Chen</li>
+        <li><strong>Created at:</strong> 2023-05-14 12:14:25</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2023-05-15 00:50:26
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://cplusv2023.github.io/cplusv//2023/05/14/mada_install/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+
+            
+
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-pjax>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Ubuntu22.04地震数据处理软件Madagascar安装</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%E7%9A%84%E5%89%8D%E8%A8%80"><span class="nav-text">前言的前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%B9%8B%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87"><span class="nav-text">安装之前的准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%EF%BC%9AUbuntu22-04"><span class="nav-text">系统版本：Ubuntu22.04</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E8%AE%AE%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="nav-text">建议的软件目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="nav-text">软件下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%EF%BC%88%E4%BE%9D%E8%B5%96%E5%BA%93%EF%BC%89%E5%AE%89%E8%A3%85%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89"><span class="nav-text">环境（依赖库）安装（重要）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%92%8C%E5%AE%89%E8%A3%85"><span class="nav-text">编译和安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE"><span class="nav-text">环境变量配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E7%BB%93%E6%9D%9F"><span class="nav-text">安装结束</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-text">结语</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">安装过程可能遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-epydoc"><span class="nav-text">1.epydoc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Make%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84-byte2tif-c%E7%BC%96%E8%AF%91%E9%94%99%E8%AF%AF%EF%BC%882023%E5%B9%B44%E6%9C%881%E6%97%A5%E7%89%88%E6%9C%AC%EF%BC%89%EF%BC%88%E5%90%8E%E7%BB%AD%E5%B7%B2%E4%BF%AE%E5%A4%8D%EF%BC%89"><span class="nav-text">2.Make过程中的_byte2tif.c编译错误（2023年4月1日版本）（后续已修复）</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Jiawei Chen</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_div" style="display:none">
+                2023/5/14 23:05:00
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/cplusv/js/utils.js"></script>
+
+<script src="/cplusv/js/main.js"></script>
+
+<script src="/cplusv/js/layouts/navbarShrink.js"></script>
+
+<script src="/cplusv/js/tools/scrollTopBottom.js"></script>
+
+<script src="/cplusv/js/tools/lightDarkSwitch.js"></script>
+
+
+
+
+
+    
+<script src="/cplusv/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/cplusv/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/cplusv/js/tools/runtime.js"></script>
+
+    
+<script src="/cplusv/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/cplusv/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/cplusv/js/libs/Typed.min.js"></script>
+
+  
+<script src="/cplusv/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/cplusv/js/tools/tocToggle.js"></script>
+
+<script src="/cplusv/js/libs/anime.min.js"></script>
+
+<script src="/cplusv/js/layouts/toc.js"></script>
+
+<script src="/cplusv/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/cplusv/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
